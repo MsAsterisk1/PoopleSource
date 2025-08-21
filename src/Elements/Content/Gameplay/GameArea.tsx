@@ -21,6 +21,7 @@ type GameAreaProps = {
 export function GameArea(props: GameAreaProps) {
     const [words, setWords] = useState<string[]>([])
     const [currentWord, setCurrentWord] = useState("")
+    const [loaded, setLoaded] = useState(false)
 
     const [invalidEntry, setInvalidEntry] = useState(false)
 
@@ -68,6 +69,32 @@ export function GameArea(props: GameAreaProps) {
         });
     }, [currentWord, handleEnter])
 
+    function onload() {
+        if (!isToday(getTimeLastPlayed()) || getGuesses().length === 0) {
+            setGuesses([getStartWord()]);
+        }
+
+        if (!isYesterday(getTimeLastWon()) && !isToday(getTimeLastWon())) {
+            setStreak(0)
+        }
+
+        setTimeLastPlayed()
+
+        const storedWords: string[] = getGuesses()
+        setWords(storedWords);
+
+        if (storedWords.at(-1)?.toLowerCase() === "poop") {
+            if (props.onGameOver) {
+                props.onGameOver(true)
+            }
+        }
+    }
+
+    if (!loaded) {
+        setLoaded(true)
+        onload()
+    }
+    
     useEffect(() => {
         function onKeyPressed(event: KeyboardEvent) {
             registerKey(event.key)
@@ -80,34 +107,10 @@ export function GameArea(props: GameAreaProps) {
             behavior: "smooth"
         });
 
-        function onload() {
-            if (!isToday(getTimeLastPlayed()) || getGuesses().length === 0) {
-                setGuesses([getStartWord()]);
-            }
-
-            if (!isYesterday(getTimeLastWon()) && !isToday(getTimeLastWon())) {
-                setStreak(0)
-            }
-
-            setTimeLastPlayed()
-
-            const storedWords: string[] = getGuesses()
-            setWords(storedWords);
-
-            if (storedWords.at(-1)?.toLowerCase() === "poop") {
-                if (props.onGameOver) {
-                    props.onGameOver(true)
-                }
-            }
-        }
-
-        window.addEventListener("load", onload);
-
         return () => {
             window.removeEventListener("keydown", onKeyPressed);
-            window.removeEventListener("load", onload);
         }
-    }, [props, registerKey, words])
+    }, [registerKey])
 
 
     return (
