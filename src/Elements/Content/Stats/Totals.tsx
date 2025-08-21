@@ -8,7 +8,11 @@ export function Totals() {
         wins += getGames()[entry]
         avgExtra += getGames()[entry] * parseInt(entry)
     }
-    avgExtra = avgExtra / wins
+    if (wins > 0) {
+        avgExtra = avgExtra / wins
+    } else {
+        avgExtra = 0
+    }
 
     return (
         <div className="Totals">

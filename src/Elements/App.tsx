@@ -7,7 +7,7 @@ import {Intro} from "./Content/Intro/Intro";
 import {Advertisement} from "./Content/Advertising/Advertisement";
 import {GameArea} from "./Content/Gameplay/GameArea";
 import {Modal} from "./Content/Modal";
-import {getGuesses} from "../localStorageUtils.ts";
+import {getGuesses, getTimeLastWon} from "../localStorageUtils.ts";
 import {getDist} from "../wordUtils.ts";
 import {EmojiRain} from "./Content/Gameplay/EmojiRain.tsx";
 
@@ -17,6 +17,16 @@ function App() {
     const [gameWon, setGameWon] = useState(false)
     const [showEmojiRain, setShowEmojiRain] = useState(false)
     const [perfect, setPerfect] = useState(false)
+
+    const [showIntroFirstTime, setShowIntroFirstTime] = useState(true)
+
+    if (getTimeLastWon() === undefined) {
+        if (showIntroFirstTime) {
+            setShowIntroFirstTime(false)
+            setShowIntro(true)
+        }
+    }
+
 
     const onGameOver = useCallback((isOnLoad?: boolean) => {
         setGameWon(true)

@@ -13,7 +13,7 @@ export function HistogramBar(props: HistogramBarProps) {
             <div className="HistogramBarLabel">{props.label}</div>
             <div className="HistogramBarAreaContainer">
                 <div
-                    style={{width: `${100 * (props.value ?? 0) / props.total}%`}}
+                    style={{width: `${props.total > 0 ? (100 * (props.value ?? 0) / props.total) : 0}%`}}
                     className={"HistogramBarArea" + (props.highlight ? " highlight" : "")}
                 >
                     {props.value ?? 0}
