@@ -1,0 +1,21 @@
+.Totals {
+    text-align: left;
+}
+
+.Totals > .Entries {
+    text-align: center;
+    display: flex;
+    margin: 0 0.5rem;
+    gap: 1rem;
+    justify-content: space-around;
+}
+
+.Entry > h2 {
+    font-weight: normal;
+    font-size: xx-large;
+    line-height: 0;
+}
+
+.Entry > p {
+    font-size: small;
+}

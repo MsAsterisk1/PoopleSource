@@ -1,0 +1,19 @@
+.Histogram {
+    text-align: left;
+    /*line-height: 1.5;*/
+    position: relative;
+    margin-top: -1rem;
+}
+
+.Histogram > .HistogramAxisLabel {
+    position: absolute;
+    rotate: -90deg;
+    top: calc(50% + 0.8rem);
+    left: 0;
+    translate: -2rem -50%;
+    font-size: small;
+}
+
+.Histogram > b {
+    line-height: 3;
+}

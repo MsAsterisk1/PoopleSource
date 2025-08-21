@@ -1,0 +1,44 @@
+.RowContainer {
+    position: relative;
+    grid-area: rows;
+    margin: 16px auto;
+    width: fit-content;
+    box-sizing: border-box;
+
+    --fade-thickness: 16px;
+}
+
+.RowContainer.jump .Row {
+    animation: jump-animation 0.75s forwards;
+    animation-timing-function: cubic-bezier(.25,.75,.75,1);
+    animation-iteration-count: 3;
+}
+
+@keyframes jump-animation {
+    50% {
+        translate: 0 -50px;
+        animation-timing-function: cubic-bezier(.25,0,.75,0.25);
+    }
+}
+
+.RowContainer > #ScrollContainer {
+
+    max-height: calc(100% - 2 * var(--fade-thickness));
+
+    padding: var(--fade-thickness) 16px;
+
+    overflow-x: clip;
+    overflow-y: scroll;
+}
+
+.RowContainer::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg_color);
+    mask-image: linear-gradient(to bottom, black 0%, transparent var(--fade-thickness), transparent calc(100% - var(--fade-thickness)), black 100%);
+}

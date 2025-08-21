@@ -1,0 +1,35 @@
+.Key {
+    --key_width: min(2.0rem, 8vw);
+    --key_height: min(2.67rem, 10.67vw);
+
+    transition-duration: 0.1s;
+
+    user-select: none;
+    cursor: pointer;
+
+    /*background-color: var(--secondary_color);*/
+    backdrop-filter: contrast(40%);
+    color: var(--primary_color);
+
+    font-weight: bold;
+
+    height: var(--key_height);
+    line-height: var(--key_height);
+    margin: 3px;
+    border-radius: 2px;
+    min-width: var(--key_width);
+}
+
+.Key:hover {
+    transition-duration: 0.05s;
+    backdrop-filter: contrast(40%) brightness(90%);
+}
+
+.Key:active {
+    backdrop-filter: contrast(40%) brightness(80%);
+}
+
+#enter, #backspace {
+    width: 100%;/*calc(1.5 * var(--key_width));*/
+    font-size: small;
+}

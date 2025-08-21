@@ -1,0 +1,66 @@
+.Modal {
+    --modal-fade-time: 0.2s;
+
+    transition-property: opacity;
+    transition-duration: var(--modal-fade-time);
+    transition-timing-function: ease-in;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.hide {
+    pointer-events: none;
+    opacity: 0;
+}
+
+.ModalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    z-index: 999;
+
+    background-color: black;
+    opacity: 0.5;
+}
+
+.ModalContent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    translate: calc(50vw - 50%) calc(50vh - 50%);
+
+    z-index: 1000;
+
+    box-sizing: border-box;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: scroll;
+
+    background-color: var(--bg_color);
+    padding: 2rem 1.5rem 1rem 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.ModalCloseButton {
+    background: none;
+    border: none;
+    color: var(--secondary_color);
+    font-size: large;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.ModalContent > .ModalTitle {
+    font-size: x-large;
+    line-height: 0;
+    font-weight: normal;
+    text-align: center;
+}

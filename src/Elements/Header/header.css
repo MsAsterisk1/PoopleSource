@@ -1,0 +1,28 @@
+.Header {
+    grid-area: header;
+}
+
+.Header > .title {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+
+    font-family: Arial Black,sans-serif;
+    font-size: 1.25rem;
+    line-height: 0.5;
+}
+
+.Header > .title > img {
+    height: 2rem;
+    margin-left: .5em;
+    user-select: none;
+}
+
+.Header > hr {
+    background-color: var(--secondary_color);
+    opacity: 50%;
+    border: none;
+    border-top: 1px solid rgba(0,0,0,.1);
+
+    margin-bottom: 1rem;
+}

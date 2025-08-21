@@ -1,0 +1,38 @@
+.Row {
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes fadeRowIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#currentWordRow.wiggle > .Box {
+    animation: wiggle 0.25s both ease;
+}
+
+@keyframes wiggle {
+    0% {
+        translate: 0;
+    }
+    25% {
+        translate: -7px;
+    }
+    75% {
+        translate: 7px;
+    }
+    100% {
+        translate: 0;
+    }
+}
+
+#currentWordRow {
+    animation: fadeRowIn 0.25s both ease-out;
+}

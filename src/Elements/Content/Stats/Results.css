@@ -1,0 +1,31 @@
+.Results {
+    text-align: left;
+    line-height: 1.5;
+}
+
+.Results .linkStyle {
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--secondary_color)
+}
+
+.Results .ResultsCopyFeedback.success::after {
+    content: "Copied!";
+    color: green;
+}
+
+.Results .ResultsCopyFeedback.error::after {
+    content: "Error - Could not copy!";
+    color: darkred;
+}
+
+.Results .ResultsCopyFeedback::after {
+    content: "";
+    margin-left: 1em;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.Results .ResultsCopyFeedback.show::after {
+    opacity: 1;
+}

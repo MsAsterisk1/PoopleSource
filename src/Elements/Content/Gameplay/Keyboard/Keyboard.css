@@ -1,0 +1,13 @@
+.Keyboard {
+    position: relative;
+    grid-area: keyboard;
+    width: fit-content;
+    margin: auto;
+}
+
+.KeyboardRow {
+    display: flex;
+    justify-content: center;
+    line-height: 1.5;
+    font-size: 1rem;
+}

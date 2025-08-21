@@ -1,0 +1,15 @@
+.Footer {
+    grid-area: footer;
+
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+
+    font-weight: lighter;
+    opacity: 50%;
+}
+
+.Footer > p {
+    user-select: none;
+    cursor: pointer;
+}

@@ -1,0 +1,42 @@
+.HistogramBar {
+    user-select: none;
+
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+
+    align-items: center;
+    grid-gap: 0.3rem;
+    margin: 2px 1.5rem 0 1.5rem;
+}
+
+.HistogramBar > .HistogramBarLabel {
+    text-align: right;
+    font-size: 75%;
+}
+
+.HistogramBar:nth-child(odd) .HistogramBarAreaContainer {
+    backdrop-filter: contrast(90%);
+}
+
+.HistogramBar .HistogramBarArea {
+    width: 100%;
+    min-width: 1.1em;
+    box-sizing: border-box;
+    color: var(--bg_color);
+    background-color: var(--secondary_color);
+    font-weight: bold;
+    line-height: 1;
+    padding: 0.1rem 0.2rem 0.15rem 0.25rem;
+}
+
+.HistogramBar .HistogramBarArea.highlight {
+    background-color: var(--accent_color);
+}
+
+.HistogramBar:hover .HistogramBarArea {
+    filter: brightness(80%);
+}
+
+.HistogramBar:hover .HistogramBarAreaContainer {
+    backdrop-filter: contrast(95%);
+}

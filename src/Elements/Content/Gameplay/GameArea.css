@@ -1,0 +1,9 @@
+.GameArea {
+    grid-area: game-area;
+
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    grid-template-areas:
+        "rows"
+        "keyboard"
+}

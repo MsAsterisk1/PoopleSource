@@ -1,0 +1,20 @@
+.Intro {
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.Intro img {
+    max-width: 50%;
+    margin: auto;
+    display: block;
+}
+
+.IntroPlayButton {
+    cursor: pointer;
+    margin: auto;
+    display: block;
+    background: none;
+    border: none;
+    color: var(--secondary_color);
+    font-size: larger;
+}

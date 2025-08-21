@@ -1,0 +1,22 @@
+.EmojiRain {
+    position: fixed;
+    left: 0;
+    top: -2em;
+    right: 0;
+    bottom: 0;
+
+    pointer-events: none;
+    font-size: x-large;
+}
+
+.EmojiRain .EmojiRaindrop {
+    position: fixed;
+    animation: Rainfall forwards ease-in;
+}
+
+@keyframes Rainfall {
+    100% {
+        translate: 0 calc(100vh + 2em);
+        visibility: hidden;
+    }
+}

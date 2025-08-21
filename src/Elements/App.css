@@ -1,0 +1,42 @@
+:root {
+  --bg_color: #eee;
+  --primary_color: #111;
+  --secondary_color: #666;
+  --highlight_color: #915d36;
+  --accent_color: #4e7cff;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg_color: #202020;
+    --primary_color: lightgrey;
+    --secondary_color: #707070;
+    --highlight_color: #67320b;
+    --accent_color: #4e7cff;
+
+    color-scheme: light dark;
+  }
+}
+
+
+.App {
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  background-color: var(--bg_color);
+  color: var(--primary_color);
+
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+        "header  header    header"
+        "left-ad game-area right-ad"
+        "footer  footer    footer";
+}
