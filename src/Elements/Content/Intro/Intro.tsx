@@ -9,7 +9,7 @@ export function Intro(props: IntroProps) {
     return (
         <div className="Intro">
 
-            <p><b>Reach "POOP" in as few steps as possible</b></p>
+            <p><b>Get to "POOP" in as few steps as possible</b></p>
             <p>Each word must be exactly one letter different from the last:</p>
             <img src={example}
                  alt={`The words "barn" and "born", highlighting the one letter where they differ`}/>

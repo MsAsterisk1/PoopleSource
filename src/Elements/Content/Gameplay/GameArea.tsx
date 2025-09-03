@@ -22,7 +22,6 @@ export function GameArea(props: GameAreaProps) {
     const [words, setWords] = useState<string[]>([])
     const [currentWord, setCurrentWord] = useState("")
     const [loaded, setLoaded] = useState(false)
-
     const [invalidEntry, setInvalidEntry] = useState(false)
 
     const makeGuess = useCallback((word: string) => {

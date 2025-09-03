@@ -42,7 +42,7 @@ export function isYesterday(time: number | undefined) {
     const startOfToday = new Date(now).setHours(0, 0, 0, 0)
     const startOfGivenDay = new Date(time).setHours(0, 0, 0, 0)
 
-    return startOfGivenDay < startOfToday - 12 * 3600 * 1000 && startOfGivenDay > startOfGivenDay - 36 * 3600 * 1000
+    return (startOfGivenDay < startOfToday - 12 * 3600 * 1000) && (startOfGivenDay > startOfToday - 36 * 3600 * 1000)
 }
 
 export function midnightsSinceEpoch() {
