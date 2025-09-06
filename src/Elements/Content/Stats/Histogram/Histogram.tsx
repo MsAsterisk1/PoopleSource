@@ -11,7 +11,7 @@ type HistogramProps = {
 
 export function Histogram(props: HistogramProps) {
 
-    const numBuckets = 5
+    const numBuckets = 7
 
     const games = getGames()
     const data: number[] = []
@@ -41,7 +41,12 @@ export function Histogram(props: HistogramProps) {
                 label={i + (i === numBuckets - 1 ? "+" : "")}
                 value={data[i] ?? 0}
                 total={total(data)}
-                highlight={props.showHighlight && ((guesses.length - 1) - shortestDist === i)}
+                highlight={
+                    props.showHighlight && (
+                        (guesses.length - 1) - shortestDist === i ||
+                        (i === numBuckets - 1 && ((guesses.length - 1) - shortestDist >= i))
+                    )
+                }
             />
         )
     }

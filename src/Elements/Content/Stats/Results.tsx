@@ -2,6 +2,7 @@ import "./Results.css"
 import {getGuesses} from "../../../localStorageUtils.ts";
 import {getDist} from "../../../wordUtils.ts";
 import {useState} from "react";
+import {midnightsSinceEpoch} from "../../../timeUtils.ts";
 
 export function Results() {
 
@@ -12,8 +13,7 @@ export function Results() {
     const shortestDist = getDist(guesses[0] ?? "")
 
     async function copyResults() {
-        let resultsString = `Poople ${new Date().toLocaleDateString()}\n`
-        resultsString += `${guesses.length - 1}/${shortestDist}\n`
+        let resultsString = `Poople ${midnightsSinceEpoch()} ${guesses.length - 1}/${shortestDist}\n`
 
         for (const guess of guesses) {
             for (let i = 0; i < 4; i++) {

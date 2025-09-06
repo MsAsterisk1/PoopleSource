@@ -11,7 +11,7 @@ import {
     setGuesses, setStreak,
     setTimeLastPlayed
 } from "../../../localStorageUtils.ts";
-import {getDist, getStartWord, isLetter, isValidWord} from "../../../wordUtils.ts";
+import {getDist, getStartWord, isInWordList, isLetter, isValidWord, oneLetterDifferent} from "../../../wordUtils.ts";
 import {isToday, isYesterday} from "../../../timeUtils.ts";
 
 type GameAreaProps = {
@@ -23,6 +23,7 @@ export function GameArea(props: GameAreaProps) {
     const [currentWord, setCurrentWord] = useState("")
     const [loaded, setLoaded] = useState(false)
     const [invalidEntry, setInvalidEntry] = useState(false)
+    const [errorMessage, setErrorMessage] = useState("")
 
     const makeGuess = useCallback((word: string) => {
         setGuesses([...words, word]);
@@ -45,8 +46,18 @@ export function GameArea(props: GameAreaProps) {
         if (isValidWord(currentWord, words.at(-1) ?? "")) {
             makeGuess(currentWord)
         } else {
+            if (currentWord.length !== 4) {
+                setErrorMessage("")
+            } else if (!isInWordList(currentWord)) {
+                setErrorMessage("Not in word list")
+            } else if (!oneLetterDifferent(currentWord, words.at(-1) ?? "")) {
+                setErrorMessage("Not one letter different")
+            } else {
+                setErrorMessage("")
+            }
+
             setInvalidEntry(true)
-            setTimeout(() => setInvalidEntry(false), 500)
+            setTimeout(() => setInvalidEntry(false), 1000)
         }
         if (currentWord.length === 4) {
             setCurrentWord("");
@@ -114,7 +125,7 @@ export function GameArea(props: GameAreaProps) {
 
     return (
         <div className="GameArea">
-            <RowContainer gameOver={words.at(-1)?.toLowerCase() === "poop"} invalidEntry={invalidEntry} words={words} currentWord={currentWord}/>
+            <RowContainer errorMessage={errorMessage} gameOver={words.at(-1)?.toLowerCase() === "poop"} invalidEntry={invalidEntry} words={words} currentWord={currentWord}/>
             <Keyboard onKeyPress={registerKey}/>
         </div>
     );

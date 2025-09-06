@@ -6,6 +6,7 @@ type RowContainerProps = {
     gameOver?: boolean;
     currentWord: string;
     invalidEntry?: boolean;
+    errorMessage: string;
 }
 
 export function RowContainer(props: RowContainerProps) {
@@ -28,9 +29,12 @@ export function RowContainer(props: RowContainerProps) {
     }
 
     return (
-        <div className={"RowContainer " + (props.gameOver ? " jump" : "")}>
-            <div id={"ScrollContainer"}>
-                {MakeRows()}
+        <div className={"RowContainer" + (props.gameOver ? " jump" : "")}>
+            <span className={"ErrorMessage" + (!props.invalidEntry ? " hide" : "")}>{props.errorMessage}</span>
+            <div className={"FadeArea"}>
+                <div id={"ScrollContainer"}>
+                    {MakeRows()}
+                </div>
             </div>
         </div>
     );

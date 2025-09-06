@@ -37,6 +37,10 @@ export function getDist(word: string) {
     return shortestDist;
 }
 
+export function isInWordList(word: string) {
+    return getWords().includes(word.toLowerCase())
+}
+
 export function isValidWord(word: string, prevWord: string) {
     return (
         getWords().includes(word.toLowerCase()) &&

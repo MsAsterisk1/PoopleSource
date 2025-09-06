@@ -1,11 +1,27 @@
 .RowContainer {
     position: relative;
     grid-area: rows;
-    margin: 16px auto;
-    width: fit-content;
+    width: 100%;
+    margin-bottom: 16px;
     box-sizing: border-box;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     --fade-thickness: 16px;
+}
+
+.RowContainer .ErrorMessage {
+    color: var(--secondary_color);
+    opacity: 1;
+}
+
+.RowContainer .ErrorMessage.hide {
+    color: var(--secondary_color);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.2s;
 }
 
 .RowContainer.jump .Row {
@@ -21,8 +37,8 @@
     }
 }
 
-.RowContainer > #ScrollContainer {
-
+.RowContainer #ScrollContainer {
+    position: relative;
     max-height: calc(100% - 2 * var(--fade-thickness));
 
     padding: var(--fade-thickness) 16px;
@@ -31,7 +47,14 @@
     overflow-y: scroll;
 }
 
-.RowContainer::after {
+.FadeArea {
+    position: absolute;
+    top: 2rem;
+    bottom: 0;
+    width: fit-content;
+}
+
+.FadeArea::after {
     pointer-events: none;
     content: "";
     position: absolute;
