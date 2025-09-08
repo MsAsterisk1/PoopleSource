@@ -20,11 +20,7 @@ export function Results() {
                 if (guess.toLowerCase()[i] === "poop"[i]) {
                     resultsString += "🟫"
                 } else {
-                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                        resultsString += "⬛"
-                    } else {
-                        resultsString += "⬜"
-                    }
+                    resultsString += "⬜"
                 }
             }
             resultsString += "\n"
