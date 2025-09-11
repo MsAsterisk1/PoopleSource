@@ -1,21 +1,23 @@
-export function getTimeToMidnight() {
-    const midnight = new Date(Date.now())
-    midnight.setHours(0, 0, 0, 0)
-    midnight.setDate(midnight.getDate() + 1)
+const UTC_GAME_CHANGE_HOUR = 8 // 3am EST
 
-    return midnight.getTime() - Date.now()
+export function getTimeToNextGame() {
+    const nextGame = new Date(Date.now())
+    nextGame.setUTCHours(UTC_GAME_CHANGE_HOUR, 0, 0, 0)
+    if (nextGame.getTime() < Date.now()) {
+        nextGame.setDate(nextGame.getDate() + 1)
+    }
+
+    return nextGame.getTime() - Date.now()
 }
 
-export function getFormattedTimeToMidnight() {
-    const time = getTimeToMidnight()
+export function getFormattedTimeToNextGame() {
+    const time = getTimeToNextGame()
     const hours = Math.floor(time / 3600000)
     const minutes = Math.floor(time / 60000) % 60
     const seconds = Math.floor(time / 1000) % 60
 
     return (
-        `
-        ${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}
-        `
+        `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
     )
 }
 
@@ -26,10 +28,18 @@ export function isToday(time: number | undefined) {
 
     const now = Date.now()
 
-    const startOfToday = new Date(now).setHours(0, 0, 0, 0)
-    const startOfGivenDay = new Date(time).setHours(0, 0, 0, 0)
+    const startOfToday = new Date(now)
+    startOfToday.setUTCHours(UTC_GAME_CHANGE_HOUR, 0, 0, 0)
+    if (startOfToday.getTime() > now) {
+        startOfToday.setUTCDate(startOfToday.getUTCDate() - 1)
+    }
+    const startOfGivenDay = new Date(time)
+    startOfGivenDay.setUTCHours(UTC_GAME_CHANGE_HOUR, 0, 0, 0)
+    if (startOfGivenDay.getTime() > time) {
+        startOfGivenDay.setUTCDate(startOfGivenDay.getUTCDate() - 1)
+    }
 
-    return startOfToday === startOfGivenDay
+    return startOfToday.getTime() === startOfGivenDay.getTime()
 }
 
 export function isYesterday(time: number | undefined) {
@@ -39,29 +49,31 @@ export function isYesterday(time: number | undefined) {
 
     const now = Date.now()
 
-    const startOfToday = new Date(now).setHours(0, 0, 0, 0)
-    const startOfGivenDay = new Date(time).setHours(0, 0, 0, 0)
+    const startOfYesterday = new Date(now)
+    startOfYesterday.setUTCHours(UTC_GAME_CHANGE_HOUR, 0, 0, 0)
+    startOfYesterday.setUTCDate(startOfYesterday.getUTCDate() - 1)
+    if (startOfYesterday.getTime() > now) {
+        startOfYesterday.setUTCDate(startOfYesterday.getUTCDate() - 1)
+    }
+    const startOfGivenDay = new Date(time)
+    startOfGivenDay.setUTCHours(UTC_GAME_CHANGE_HOUR, 0, 0, 0)
+    if (startOfGivenDay.getTime() > time) {
+        startOfGivenDay.setUTCDate(startOfGivenDay.getUTCDate() - 1)
+    }
 
-    return (startOfGivenDay < startOfToday - 12 * 3600 * 1000) && (startOfGivenDay > startOfToday - 36 * 3600 * 1000)
+    return startOfYesterday.getTime() === startOfGivenDay.getTime()
 }
 
-export function midnightsSinceEpoch() {
+export function daysSinceEpoch(time?: number) {
     const epoch = new Date()
     epoch.setUTCFullYear(2025, 7, 15)
-    // there are always two discontinuities, where two adjacent time zones have different poople words
-    // one is at midnight (this is good, since we want a new word at midnight)
-    // the other is at an arbitrary time zone division given by the epoch (this one is undesirable but necessary)
-    // setting the epoch to noon UTC puts the second discontinuity between UTC+12 and UTC-12
-    // which is probably the best place for it
-    // not sure if this plays nice with time zones outside the -12 to +12 range
-    // not to mention DST
-    epoch.setUTCHours(12, 0, 0, 0)
+    epoch.setUTCHours(UTC_GAME_CHANGE_HOUR, 0, 0, 0)
 
-    let startOfDay = new Date(Date.now()).setHours(0, 0, 0, 0)
+    let now = time ?? Date.now()
     let numDays = 0
-    // can't think of another way to count midnights that matches the robustness of just. counting them one by one
-    while (startOfDay > epoch.getTime()) {
-        startOfDay = new Date(startOfDay).setDate(new Date(startOfDay).getDate() - 1)
+    // can't think of another way to count days that matches the robustness of just. counting them one by one
+    while (now > epoch.getTime()) {
+        now = new Date(now).setDate(new Date(now).getDate() - 1)
         numDays += 1
     }
 

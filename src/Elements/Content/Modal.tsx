@@ -13,7 +13,7 @@ export function Modal(props: PropsWithChildren & ModalProps) {
             <div className="ModalBackdrop" onClick={props.onClosePress}></div>
             <div className="ModalContent">
                 <h1 className={"ModalTitle"}>{props.title}</h1>
-                <button onClick={props.onClosePress} className="ModalCloseButton">🗙</button>
+                <button onClick={props.onClosePress} className="ModalCloseButton">✕</button>
                 {props.children}
             </div>
         </div>

@@ -1,6 +1,6 @@
 import wordDist from "./WordLists/wordDist.csv?raw";
 import startWords from "./WordLists/startWords.csv?raw";
-import {midnightsSinceEpoch} from "./timeUtils.ts";
+import {daysSinceEpoch} from "./timeUtils.ts";
 
 export function getWords() {
     return wordDist.toLowerCase().split("\n").map(str => str.trim().split(",")[0].trim())
@@ -51,7 +51,7 @@ export function isValidWord(word: string, prevWord: string) {
 
 export function getStartWord() {
     function pickWord(arr: string[]) {
-        const index = midnightsSinceEpoch()
+        const index = daysSinceEpoch()
         return arr[index];
     }
 

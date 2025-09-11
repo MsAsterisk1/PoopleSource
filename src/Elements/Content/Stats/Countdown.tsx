@@ -1,10 +1,10 @@
-import {getFormattedTimeToMidnight, isToday} from "../../../timeUtils.ts";
+import {getFormattedTimeToNextGame, isToday} from "../../../timeUtils.ts";
 import {useEffect, useState} from "react";
 import {getTimeLastPlayed} from "../../../localStorageUtils.ts";
 import "./Countdown.css"
 
 export function Countdown() {
-    const [time, setTime] = useState(getFormattedTimeToMidnight())
+    const [time, setTime] = useState(getFormattedTimeToNextGame())
     const [newGameReady, setNewGameReady] = useState(false);
 
     function reload() {
@@ -20,7 +20,7 @@ export function Countdown() {
                     setNewGameReady(true);
                     clearInterval(countdown)
                 } else {
-                    setTime(getFormattedTimeToMidnight())
+                    setTime(getFormattedTimeToNextGame())
                 }
             }, 1000)
         }, 10)

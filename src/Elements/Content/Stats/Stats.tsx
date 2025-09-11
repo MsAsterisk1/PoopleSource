@@ -15,7 +15,7 @@ export function Stats(props: StatsProps) {
 
     return (
         <div className="Stats">
-            {props.gameWon ? <h1>{guesses[0]?.toUpperCase()} → POOP</h1> : null}
+            {props.gameWon ? <h1>{guesses[0]?.toUpperCase()}  <span style={{fontSize: "80%"}}>to</span>  POOP</h1> : null}
             <div className="StatsContainer">
                 {props.gameWon ? <Results/> : null}
                 <Totals/>
