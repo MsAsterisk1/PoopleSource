@@ -4,7 +4,7 @@ import {Header} from "./Header/Header";
 import {Footer} from "./Footer/Footer";
 import {Stats} from "./Content/Stats/Stats";
 import {Intro} from "./Content/Intro/Intro";
-import {Advertisement} from "./Content/Advertising/Advertisement";
+// import {Advertisement} from "./Content/Advertising/Advertisement";
 import {GameArea} from "./Content/Gameplay/GameArea";
 import {Modal} from "./Content/Modal";
 import {getGuesses, getTimeLastWon} from "../localStorageUtils.ts";
@@ -44,10 +44,10 @@ function App() {
         <div className="App">
             <Header/>
 
-            <Advertisement/>
+            {/*<Advertisement area={"left"}/>*/}
             <GameArea onGameOver={onGameOver}/>
             <EmojiRain active={showEmojiRain} count={100}/>
-            <Advertisement/>
+            {/*<Advertisement area={"right"}/>*/}
 
             <Modal hidden={!showStats} title={gameWon ? (perfect ? "Perfect!" : "Congratulations!") : ""} onClosePress={() => setShowStats(false)}>
                 <Stats gameWon={gameWon}/>

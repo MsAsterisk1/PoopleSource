@@ -13,7 +13,7 @@ export function Results() {
     const shortestDist = getDist(guesses[0] ?? "")
 
     async function copyResults() {
-        let resultsString = `Poople ${daysSinceEpoch(getTimeLastPlayed())} ${guesses.length - 1}/${shortestDist}\n`
+        let resultsString = `Poople #${daysSinceEpoch(getTimeLastPlayed())} ${guesses.length - 1}/${shortestDist}\n`
 
         for (const guess of guesses) {
             for (let i = 0; i < 4; i++) {
