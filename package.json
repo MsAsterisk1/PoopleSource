@@ -13,6 +13,7 @@
     "@ctrl/react-adsense": "^2.1.0",
     "@react-pdf-viewer/core": "^3.12.0",
     "@react-pdf-viewer/default-layout": "^3.12.0",
+    "mixpanel-browser": "^2.70.0",
     "pdfjs-dist": "^3.4.120",
     "react": "^19.1.1",
     "react-adsense": "^0.1.0",

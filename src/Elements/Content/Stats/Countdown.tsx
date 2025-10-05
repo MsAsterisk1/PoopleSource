@@ -12,7 +12,7 @@ export function Countdown() {
     }
 
     useEffect(() => {
-        let countdown: number
+        let countdown: NodeJS.Timeout
         setTimeout(() => {
             setNewGameReady(!isToday(getTimeLastPlayed()));
             countdown = setInterval(() => {

@@ -1,5 +1,6 @@
 import wordDist from "./WordLists/wordDist.csv?raw";
 import startWords from "./WordLists/startWords.csv?raw";
+import testStartWords from "./WordLists/testStartWords.csv?raw";
 import {daysSinceEpoch} from "./timeUtils.ts";
 
 export function getWords() {
@@ -51,17 +52,27 @@ export function isValidWord(word: string, prevWord: string) {
 
 export function getStartWord() {
     function pickWord(arr: string[]) {
-        const index = daysSinceEpoch()
-        return arr[index];
+        const ind = daysSinceEpoch()
+        return arr[ind];
     }
 
     return pickWord(
         startWords
             .toLowerCase()
             .split("\n")
-            .filter( // only select words at non-trivial distance
-                (line) => parseInt(line.split(",")[1]) > 4
-            ).map(
-                (line) => line.split(",")[0])
+            .map(
+                (line) => line.split(",")[0]
+            )
+    )
+}
+
+export function getTestStartWord(index: number) {
+    return (
+        testStartWords
+            .toLowerCase()
+            .split("\n")
+            .map(
+                (line) => line.split(",")[0]
+            )[index]
     )
 }

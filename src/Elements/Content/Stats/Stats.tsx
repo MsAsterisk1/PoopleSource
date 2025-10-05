@@ -7,6 +7,8 @@ import {getGuesses} from "../../../localStorageUtils.ts";
 
 type StatsProps = {
     gameWon: boolean,
+    test?: boolean,
+    testNext: () => void,
 }
 
 export function Stats(props: StatsProps) {
@@ -20,7 +22,8 @@ export function Stats(props: StatsProps) {
                 {props.gameWon ? <Results/> : null}
                 <Totals/>
                 <Histogram showHighlight={props.gameWon}/>
-                {props.gameWon ? <Countdown/> : null}
+                {props.test ? <span className={"testNextButton"} onClick={props.testNext}>Test next puzzle</span> : (props.gameWon ? <Countdown/> : null)}
+
             </div>
         </div>
     );

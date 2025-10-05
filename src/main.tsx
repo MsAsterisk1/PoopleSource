@@ -14,6 +14,7 @@ root.render(
         <HashRouter>
             <Routes>
                 <Route path="/" element={<App />} />
+                <Route path="/test" element={<App test />} />
                 <Route path="/support" element={<Support />} />
                 <Route path="/privacy" element={<Privacy />} />
             </Routes>

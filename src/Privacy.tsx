@@ -17,7 +17,7 @@ export default function Privacy() {
         <div className={"Privacy"}>
             <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
                 <Viewer
-                    fileUrl='public/privacy-policy.pdf'
+                    fileUrl='privacy-policy.pdf'
                     plugins={[
                         defaultLayoutPluginInstance,
                     ]}

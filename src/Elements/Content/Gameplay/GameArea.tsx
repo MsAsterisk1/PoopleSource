@@ -11,11 +11,22 @@ import {
     setGuesses, setStreak,
     setTimeLastPlayed
 } from "../../../localStorageUtils.ts";
-import {getDist, getStartWord, isInWordList, isLetter, isValidWord, oneLetterDifferent} from "../../../wordUtils.ts";
+import {
+    getDist,
+    getStartWord,
+    getTestStartWord,
+    isInWordList,
+    isLetter,
+    isValidWord,
+    oneLetterDifferent
+} from "../../../wordUtils.ts";
 import {isToday, isYesterday} from "../../../timeUtils.ts";
+import mixpanel from "mixpanel-browser";
 
 type GameAreaProps = {
     onGameOver?: (isOnLoad?: boolean) => void;
+    test?: boolean;
+    testIndex: number;
 }
 
 export function GameArea(props: GameAreaProps) {
@@ -34,10 +45,16 @@ export function GameArea(props: GameAreaProps) {
             const guesses = getGuesses()
             const shortestDist = getDist(words[0])
             const excessGuesses = guesses.length - 1 - shortestDist
-            winGame(excessGuesses)
+            if (!props.test) {
+                winGame(excessGuesses)
+            }
             
             if (props.onGameOver !== undefined) {
                 props.onGameOver()
+
+                if (!props.test) {
+                    mixpanel.track("Finish Game")
+                }
             }
         }
     }, [props, words])
@@ -80,8 +97,10 @@ export function GameArea(props: GameAreaProps) {
     }, [currentWord, handleEnter])
 
     function onload() {
-        if (!isToday(getTimeLastPlayed()) || getGuesses().length === 0) {
+        if (!isToday(getTimeLastPlayed()) || getGuesses().length === 0 || getGuesses()[0] !== getStartWord()) {
+            mixpanel.track("Start Game")
             setGuesses([getStartWord()]);
+            setCurrentWord("")
         }
 
         if (!isYesterday(getTimeLastWon()) && !isToday(getTimeLastWon())) {
@@ -100,7 +119,7 @@ export function GameArea(props: GameAreaProps) {
         }
     }
 
-    if (!loaded) {
+    if (!loaded && !props.test) {
         setLoaded(true)
         onload()
     }
@@ -117,10 +136,16 @@ export function GameArea(props: GameAreaProps) {
             behavior: "smooth"
         });
 
+        if (props.test && words[0] !== getTestStartWord(props.testIndex)) {
+            setGuesses([getTestStartWord(props.testIndex)])
+            setWords([getTestStartWord(props.testIndex)]);
+            setCurrentWord("")
+        }
+
         return () => {
             window.removeEventListener("keydown", onKeyPressed);
         }
-    }, [registerKey])
+    }, [props.test, props.testIndex, registerKey, words]);
 
 
     return (

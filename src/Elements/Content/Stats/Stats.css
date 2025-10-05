@@ -5,3 +5,16 @@
 .StatsContainer > * {
     margin-bottom: 1rem;
 }
+
+.testNextButton {
+    user-select: none;
+    cursor: pointer;
+    display: block;
+    height: 4em;
+    line-height: 4em;
+    background: rgba(50%, 50%, 50%, 20%);
+}
+
+.testNextButton:hover {
+    background: rgba(40%, 40%, 40%, 20%);
+}
