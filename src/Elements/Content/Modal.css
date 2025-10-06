@@ -46,6 +46,10 @@
     border-radius: 0.5rem;
 }
 
+.ModalContent::-webkit-scrollbar {
+    display: none;
+}
+
 .ModalCloseButton {
     background: none;
     border: none;

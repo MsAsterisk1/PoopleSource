@@ -7,14 +7,17 @@ import {Intro} from "./Content/Intro/Intro";
 import {GameArea} from "./Content/Gameplay/GameArea";
 import {Modal} from "./Content/Modal";
 import {getGuesses, getTimeLastWon} from "../localStorageUtils.ts";
-import {getDist} from "../wordUtils.ts";
+import {getDist, getStartWord} from "../wordUtils.ts";
 import {EmojiRain} from "./Content/Gameplay/EmojiRain.tsx";
 import mixpanel from "mixpanel-browser";
 import {useNavigate, useSearchParams} from "react-router";
+import Yesterday from "./Content/Yesterday/Yesterday.tsx";
+import {daysSinceEpoch} from "../timeUtils.ts";
 
 function App(props: {test?: boolean}) {
     const [showStats, setShowStats] = useState(false)
     const [showIntro, setShowIntro] = useState(false)
+    const [showYesterday, setShowYesterday] = useState(true)
     const [gameWon, setGameWon] = useState(false)
     const [showEmojiRain, setShowEmojiRain] = useState(false)
     const [perfect, setPerfect] = useState(false)
@@ -118,7 +121,11 @@ function App(props: {test?: boolean}) {
                 <Intro onClosePress={() => setShowIntro(false)}/>
             </Modal>
 
-            <Footer setShowStats={setShowStats} setShowIntro={setShowIntro}/>
+            <Modal hidden={!showYesterday} title={`Poople #${daysSinceEpoch() - 1}: ${getStartWord(daysSinceEpoch() - 1).toUpperCase()}`} onClosePress={() => setShowYesterday(false)}>
+                <Yesterday/>
+            </Modal>
+
+            <Footer setShowYesterday={setShowYesterday} setShowStats={setShowStats} setShowIntro={setShowIntro}/>
         </div>
     );
 }

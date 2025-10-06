@@ -47,6 +47,10 @@
     overflow-y: scroll;
 }
 
+.RowContainer #ScrollContainer::-webkit-scrollbar {
+    display: none;
+}
+
 .FadeArea {
     position: absolute;
     top: 2rem;

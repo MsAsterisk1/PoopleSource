@@ -1,0 +1,24 @@
+.Yesterday {
+    margin-top: 2rem;
+    width: min(calc(90vw - 3rem), max(30vw, 20em));
+    overflow: clip;
+}
+
+.Yesterday .row-container {
+    overflow-y: scroll;
+    height: 50vh;
+}
+
+.Yesterday .row-container::-webkit-scrollbar {
+    display: none;
+}
+
+.Yesterday .Row {
+    --scale: 0.67;
+    margin-bottom: calc((-1 + var(--scale)) * (min(4rem, 15vw) + 0.4rem));
+    scale: var(--scale);
+}
+
+.ModalContent:has(.Yesterday) {
+    overflow: clip;
+}
