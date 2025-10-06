@@ -17,7 +17,7 @@ import {daysSinceEpoch} from "../timeUtils.ts";
 function App(props: {test?: boolean}) {
     const [showStats, setShowStats] = useState(false)
     const [showIntro, setShowIntro] = useState(false)
-    const [showYesterday, setShowYesterday] = useState(true)
+    const [showYesterday, setShowYesterday] = useState(false)
     const [gameWon, setGameWon] = useState(false)
     const [showEmojiRain, setShowEmojiRain] = useState(false)
     const [perfect, setPerfect] = useState(false)
