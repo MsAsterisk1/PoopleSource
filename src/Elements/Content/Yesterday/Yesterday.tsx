@@ -5,7 +5,7 @@ import {Row} from "../Gameplay/Board/Row.tsx";
 
 export default function Yesterday() {
 
-    const yesterdayStartWord = getStartWord(daysSinceEpoch() - 2)
+    const yesterdayStartWord = getStartWord(daysSinceEpoch() - 1)
     const width = getTreeWidth(yesterdayStartWord);
     const path = getShortestPath(yesterdayStartWord);
     const dist = getDist(yesterdayStartWord);
