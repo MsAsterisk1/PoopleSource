@@ -131,9 +131,6 @@ export function GameArea(props: GameAreaProps) {
             behavior: "smooth"
         });
 
-        console.log(props.testIndex)
-        console.log(getTestStartWord(props.testIndex))
-
         if (props.test && words[0] !== getTestStartWord(props.testIndex)) {
             setGuesses([getTestStartWord(props.testIndex)])
             setWords([getTestStartWord(props.testIndex)]);
