@@ -110,6 +110,7 @@ export function GameArea(props: GameAreaProps) {
         setTimeLastPlayed()
 
         const storedWords: string[] = getGuesses()
+        
         setWords(storedWords);
 
         if (storedWords.at(-1)?.toLowerCase() === "poop") {

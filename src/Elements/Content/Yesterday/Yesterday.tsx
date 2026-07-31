@@ -10,7 +10,7 @@ export default function Yesterday() {
     const path = getShortestPath(yesterdayStartWord);
     const dist = getDist(yesterdayStartWord);
 
-    const widthQuanitifier = width == 1 ? "was only one way" : (width < 8 ? "were a few ways" : "were several ways")
+    const widthQuanitifier = width == 1 ? "was only one way" : (width < 5 ? "were a few ways" : "were several ways")
 
     const presentingSentence = width == 1 ? "Here it is:" : "Here's one of them:"
 

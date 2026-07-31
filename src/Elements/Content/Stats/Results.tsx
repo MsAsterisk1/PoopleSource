@@ -3,6 +3,7 @@ import {getGuesses, getTimeLastPlayed} from "../../../localStorageUtils.ts";
 import {getDist} from "../../../wordUtils.ts";
 import {useState} from "react";
 import {daysSinceEpoch} from "../../../timeUtils.ts";
+import mixpanel from "mixpanel-browser";
 
 export function Results() {
 
@@ -26,13 +27,15 @@ export function Results() {
             resultsString += "\n"
 
         }
+
+        resultsString += "\nhttps://poople.io/"
         
         try {
             await navigator.clipboard.writeText(resultsString)
             setShowCopyFeedback(true)
             setCopySuccess(true)
             setTimeout(() => { setShowCopyFeedback(false) }, 1000)
-
+            mixpanel.track("Copy Results")
         } catch (error) {
             console.error(error)
             setShowCopyFeedback(true)

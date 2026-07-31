@@ -90,8 +90,6 @@ function App(props: {test?: boolean}) {
                 '$google_play_services'
             ],
         });
-
-        mixpanel.track_pageview()
     }
 
     function testNext() {
