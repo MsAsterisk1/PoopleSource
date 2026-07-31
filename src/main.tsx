@@ -16,7 +16,7 @@ root.render(
                 <Route path="/" element={<App />} />
                 <Route path="/test" element={<App test />} />
                 <Route path="/support" element={<Support />} />
-                <Route path="/privacy" element={<Privacy />} />
+                {/*<Route path="/privacy" element={<Privacy />} />*/}
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
