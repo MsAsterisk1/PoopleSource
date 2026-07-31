@@ -41,11 +41,11 @@ function App(props: {test?: boolean}) {
                 que: (() => void)[]
                 registerZone: ((id: string) => void)
             }
-        }).fusetag
-        fusetag.que.push(function() {
-            fusetag.registerZone('leaderboard-ad')
-            fusetag.registerZone('rhs-ad')
-            fusetag.registerZone('lhs-ad')
+        })?.fusetag
+        fusetag?.que?.push(function() {
+            fusetag?.registerZone('leaderboard-ad')
+            fusetag?.registerZone('rhs-ad')
+            fusetag?.registerZone('lhs-ad')
         });
     }, []);
 
