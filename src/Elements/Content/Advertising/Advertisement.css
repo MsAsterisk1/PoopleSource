@@ -13,33 +13,8 @@
     grid-area: right-ad;
 }
 
-.AdSlot {
-    background-color: white;
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    /*height: 100%;*/
+.Advertisement.leaderboard {
+    grid-area: leaderboard;
+    width: 100%;
+    max-height: 4em;
 }
-
-/*@media (min-width: 1280px) {*/
-/*    .ExampleAdSlot{*/
-/*        display: none !important;*/
-/*    }*/
-/*}*/
-
-/*@media (max-width: 1000px) {*/
-/*    .ExampleAdSlot{*/
-/*        width: 728px;*/
-/*        height: 90px;*/
-/*    }*/
-/*}*/
-
-/*@media (max-width: 750px) {*/
-/*    .ExampleAdSlot{*/
-/*        width: 336px;*/
-/*        height: 280px;*/
-/*    }*/
-/*}*/

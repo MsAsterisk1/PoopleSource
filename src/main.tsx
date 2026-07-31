@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './main.css';
 import App from './Elements/App';
-import {HashRouter, Route, Routes} from "react-router";
+import {BrowserRouter, Route, Routes} from "react-router";
 import Support from "./Support.tsx";
 import Privacy from "./Privacy.tsx";
 
@@ -11,13 +11,13 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <HashRouter>
+        <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/test" element={<App test />} />
                 <Route path="/support" element={<Support />} />
                 <Route path="/privacy" element={<Privacy />} />
             </Routes>
-        </HashRouter>
+        </BrowserRouter>
     </React.StrictMode>
 );

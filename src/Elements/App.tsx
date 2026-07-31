@@ -9,10 +9,10 @@ import {Modal} from "./Content/Modal";
 import {getGuesses, getTimeLastWon} from "../localStorageUtils.ts";
 import {getDist, getStartWord} from "../wordUtils.ts";
 import {EmojiRain} from "./Content/Gameplay/EmojiRain.tsx";
-import mixpanel from "mixpanel-browser";
 import {useNavigate, useSearchParams} from "react-router";
 import Yesterday from "./Content/Yesterday/Yesterday.tsx";
 import {daysSinceEpoch} from "../timeUtils.ts";
+import {Advertisement} from "./Content/Advertising/Advertisement.tsx";
 
 function App(props: {test?: boolean}) {
     const [showStats, setShowStats] = useState(false)
@@ -34,7 +34,21 @@ function App(props: {test?: boolean}) {
             setShowIntro(true)
         }
     }
-    
+
+    useEffect(() => {
+        const fusetag = (window as unknown as Window & {
+            fusetag: {
+                que: (() => void)[]
+                registerZone: ((id: string) => void)
+            }
+        }).fusetag
+        fusetag.que.push(function() {
+            fusetag.registerZone('leaderboard-ad')
+            fusetag.registerZone('rhs-ad')
+            fusetag.registerZone('lhs-ad')
+        });
+    }, []);
+
     useEffect(() => {
         setTestIndex(parseInt(searchParams.get("index") ?? "-1"))
     }, [searchParams, testIndex])
@@ -51,65 +65,36 @@ function App(props: {test?: boolean}) {
         }
     }, []);
 
-    if (!props.test) {
-        mixpanel.init("e618f9d188a4bfdb14f5ffede6dce33c", {
-            debug: true,
-            track_pageview: true,
-            persistence: "localStorage",
-            record_heatmap_data: true,
-            ip: false,
-            property_blacklist: [
-                '$city',
-                '$region',
-                '$country_code',
-                '$geo_source',
-                '$timezone',
-                '$last_seen',
-                '$referrer',
-                '$device_id',
-                '$user_id',
-                '$os',
-                '$os_version',
-                '$browser',
-                '$browser_version',
-                '$device',
-                '$screen_height',
-                '$screen_width',
-                '$screen_dpi',
-                '$manufacturer',
-                '$brand',
-                '$model',
-                '$watch_model',
-                '$carrier',
-                '$radio',
-                '$wifi',
-                '$bluetooth_enabled',
-                '$bluetooth_version',
-                '$has_nfc',
-                '$has_telephone',
-                '$google_play_services'
-            ],
-        });
-    }
-
     function testNext() {
         setTestIndex(testIndex + 1)
         navigate(`/test?index=${testIndex + 1}`)
         setShowStats(false)
-        // window.location.reload()
-        // searchParams.set("index", String(parseInt(searchParams.get("index") ?? "-1") + 1))
     }
 
     return (
         <div className="App">
             <Header/>
 
-            {/*<Advertisement area={"left"}>*/}
-
-            {/*</Advertisement>*/}
             <GameArea testIndex={testIndex} test={props.test} onGameOver={onGameOver}/>
             <EmojiRain active={showEmojiRain} count={100}/>
-            {/*<Advertisement area={"right"}/>*/}
+
+            {props.test ? (
+                <>
+                    <Advertisement area={"leaderboard"}>
+                        <div id={"leaderboard-ad"} data-fuse="mobile_leaderboard"></div>
+                    </Advertisement>
+
+                    <Advertisement area={"left"}>
+                        <div id={"lhs-ad"} data-fuse="vrec_lhs"></div>
+                    </Advertisement>
+
+                    <Advertisement area={"right"}>
+                        <div id={"rhs-ad"} data-fuse="vrec_rhs"></div>
+                    </Advertisement>
+                </>
+            ) : <div></div>
+            }
+
 
             <Modal hidden={!showStats} title={gameWon ? (perfect ? "Perfect!" : "Congratulations!") : ""} onClosePress={() => setShowStats(false)}>
                 <Stats test={props.test} testNext={testNext} gameWon={gameWon}/>

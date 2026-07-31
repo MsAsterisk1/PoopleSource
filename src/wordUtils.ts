@@ -80,6 +80,10 @@ export function getStartWord(index?: number) {
 }
 
 export function getTestStartWord(index: number) {
+    if (index < 0) {
+        index = daysSinceEpoch()
+    }
+
     return (
         testStartWords
             .toLowerCase()

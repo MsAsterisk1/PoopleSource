@@ -2,6 +2,24 @@
 <html lang="en" style="background: #202020">
   <head>
     <script async src="https://cdn.fuseplatform.net/publift/tags/2/4330/fuse.js"></script>
+
+    <script>
+      // Get an initialisation-safe reference to the Fuse Queue
+      const fusetag = window.fusetag || (window.fusetag = { que: [] });
+
+      fusetag.que.push(function() {
+        fusetag.pageInit({
+          blockingFuseIds: [
+            'vrec_lhs',
+            'vrec_rhs',
+            'mobile_leaderboard'
+          ],
+
+          pageTargets: []
+        });
+      });
+    </script>
+
     <meta charset="UTF-8" />
     <link rel="icon" href="/PoopleStroke.svg">
     <link rel="icon" type="image/svg+xml" href="/PoopleStroke.svg" />

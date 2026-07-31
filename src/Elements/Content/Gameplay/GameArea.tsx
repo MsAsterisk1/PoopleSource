@@ -21,7 +21,6 @@ import {
     oneLetterDifferent
 } from "../../../wordUtils.ts";
 import {isToday, isYesterday} from "../../../timeUtils.ts";
-import mixpanel from "mixpanel-browser";
 
 type GameAreaProps = {
     onGameOver?: (isOnLoad?: boolean) => void;
@@ -51,10 +50,6 @@ export function GameArea(props: GameAreaProps) {
             
             if (props.onGameOver !== undefined) {
                 props.onGameOver()
-
-                if (!props.test) {
-                    mixpanel.track("Finish Game")
-                }
             }
         }
     }, [props, words])
@@ -98,7 +93,6 @@ export function GameArea(props: GameAreaProps) {
 
     function onload() {
         if (!isToday(getTimeLastPlayed()) || getGuesses().length === 0 || getGuesses()[0] !== getStartWord()) {
-            mixpanel.track("Start Game")
             setGuesses([getStartWord()]);
             setCurrentWord("")
         }
@@ -136,6 +130,9 @@ export function GameArea(props: GameAreaProps) {
             top: document.getElementById("ScrollContainer")?.scrollHeight,
             behavior: "smooth"
         });
+
+        console.log(props.testIndex)
+        console.log(getTestStartWord(props.testIndex))
 
         if (props.test && words[0] !== getTestStartWord(props.testIndex)) {
             setGuesses([getTestStartWord(props.testIndex)])
