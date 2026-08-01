@@ -21,11 +21,11 @@
 }
 
 body:has(.publift-widget-sticky_footer-container) .App {
-  bottom: 90px !important;
+  padding-bottom: 90px !important;
 }
 
 body:has(.publift-widget-sticky_footer-container.closed) .App {
-  bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .App {
@@ -43,10 +43,23 @@ body:has(.publift-widget-sticky_footer-container.closed) .App {
 
   display: grid;
   grid-template-rows: auto auto minmax(0, 1fr) auto;
-  grid-template-columns: 1fr minmax(0, 1fr) 1fr;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   grid-template-areas:
-        "header   header       header"
-        "left-ad  leaderboard  right-ad"
-        "left-ad  game-area    right-ad"
-        "footer   footer       footer";
+        "header       header       header"
+        "leaderboard  leaderboard  leaderboard"
+        "left-ad      game-area    right-ad"
+        "footer       footer       footer";
+}
+
+@media (orientation: landscape) {
+  .App {
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    grid-template-columns: 1fr minmax(0, 1fr) 1fr;
+    grid-template-areas:
+        "header       header       header"
+        "leaderboard  leaderboard  leaderboard"
+        "left-ad      game-area    right-ad"
+        "footer       footer       footer";
+  }
 }

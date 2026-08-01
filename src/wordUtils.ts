@@ -1,6 +1,6 @@
 import wordDist from "./WordLists/wordDist.csv?raw";
 import startWords from "./WordLists/startWords.csv?raw";
-import testStartWords from "./WordLists/testStartWords.csv?raw";
+// import testStartWords from "./WordLists/testStartWords.csv?raw";
 import wordFrequency from "./WordLists/wordFrequency.csv?raw";
 import {daysSinceEpoch} from "./timeUtils.ts";
 
@@ -85,7 +85,7 @@ export function getTestStartWord(index: number) {
     }
 
     return (
-        testStartWords
+        startWords
             .toLowerCase()
             .split("\n")
             .map(

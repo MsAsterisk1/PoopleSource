@@ -9,6 +9,13 @@
     opacity: 50%;
 }
 
+@media (orientation: portrait) {
+    .Footer {
+        justify-content: space-around;
+        gap: 0 !important;
+    }
+}
+
 .Footer > p {
     user-select: none;
     cursor: pointer;

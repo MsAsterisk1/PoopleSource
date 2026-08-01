@@ -2,6 +2,7 @@
     grid-area: game-area;
 
     display: grid;
+    justify-content: center;
     grid-template-rows: minmax(0, 1fr) auto;
     grid-template-areas:
         "rows"
