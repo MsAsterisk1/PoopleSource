@@ -1,20 +1,27 @@
 .Advertisement {
-    width: 160px;
-    height: 600px;
     display: block;
     position: relative;
 }
 
 .Advertisement.left {
     grid-area: left-ad;
+    justify-self: left;
+    margin-left: 10px;
 }
 
 .Advertisement.right {
     grid-area: right-ad;
+    justify-self: right;
+    margin-right: 10px;
 }
 
 .Advertisement.leaderboard {
     grid-area: leaderboard;
     width: 100%;
     max-height: 4em;
+}
+
+.publift-widget-sticky_footer-container {
+    left: 25% !important;
+    right: 25% !important;
 }
