@@ -43,7 +43,7 @@ function App(props: {test?: boolean}) {
             }
         })?.fusetag
         fusetag?.que?.push(function() {
-            // fusetag?.registerZone('leaderboard-ad')
+            fusetag?.registerZone('leaderboard-ad')
             fusetag?.registerZone('rhs-ad')
             fusetag?.registerZone('lhs-ad')
         });
@@ -80,9 +80,9 @@ function App(props: {test?: boolean}) {
 
             {props.test ? (
                 <>
-                    {/*<Advertisement area={"leaderboard"}>*/}
-                    {/*    <div id={"leaderboard-ad"} data-fuse="mobile_leaderboard"></div>*/}
-                    {/*</Advertisement>*/}
+                    <Advertisement area={"leaderboard"}>
+                        <div id={"leaderboard-ad"} data-fuse="mobile_leaderboard"></div>
+                    </Advertisement>
 
                     <Advertisement area={"left"}>
                         <div id={"lhs-ad"} data-fuse="vrec_lhs"></div>
