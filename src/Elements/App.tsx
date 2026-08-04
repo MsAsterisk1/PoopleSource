@@ -78,23 +78,17 @@ function App(props: {test?: boolean}) {
             <GameArea testIndex={testIndex} test={props.test} onGameOver={onGameOver}/>
             <EmojiRain active={showEmojiRain} count={100}/>
 
-            {props.test ? (
-                <>
-                    <Advertisement area={"leaderboard"}>
-                        <div id={"leaderboard-ad"} data-fuse="mobile_leaderboard"></div>
-                    </Advertisement>
+            <Advertisement area={"leaderboard"}>
+                <div id={"leaderboard-ad"} data-fuse="mobile_leaderboard"></div>
+            </Advertisement>
 
-                    <Advertisement area={"left"}>
-                        <div id={"lhs-ad"} data-fuse="vrec_lhs"></div>
-                    </Advertisement>
+            <Advertisement area={"left"}>
+                <div id={"lhs-ad"} data-fuse="vrec_lhs"></div>
+            </Advertisement>
 
-                    <Advertisement area={"right"}>
-                        <div id={"rhs-ad"} data-fuse="vrec_rhs"></div>
-                    </Advertisement>
-                </>
-            ) : <div></div>
-            }
-
+            <Advertisement area={"right"}>
+                <div id={"rhs-ad"} data-fuse="vrec_rhs"></div>
+            </Advertisement>
 
             <Modal hidden={!showStats} title={gameWon ? (perfect ? "Perfect!" : "Congratulations!") : ""} onClosePress={() => setShowStats(false)}>
                 <Stats test={props.test} testNext={testNext} gameWon={gameWon}/>
