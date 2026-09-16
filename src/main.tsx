@@ -14,6 +14,8 @@ root.render(
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/test" element={<App test />} />
+                <Route path="/test/publift" element={<App test testCase={"publift"} />} />
+                <Route path="/test/ezoic" element={<App test testCase={"ezoic"} />} />
                 <Route path="/support" element={<Support />} />
                 {/*<Route path="/privacy" element={<Privacy />} />*/}
             </Routes>

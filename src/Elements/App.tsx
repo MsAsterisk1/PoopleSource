@@ -14,7 +14,7 @@ import Yesterday from "./Content/Yesterday/Yesterday.tsx";
 import {daysSinceEpoch} from "../timeUtils.ts";
 import {Advertisement} from "./Content/Advertising/Advertisement.tsx";
 
-function App(props: {test?: boolean}) {
+function App(props: {test?: boolean, testCase?: string}) {
     const [showStats, setShowStats] = useState(false)
     const [showIntro, setShowIntro] = useState(false)
     const [showYesterday, setShowYesterday] = useState(false)
