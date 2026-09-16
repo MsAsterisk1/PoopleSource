@@ -6,6 +6,10 @@ import {getStartWord} from "../../wordUtils.ts";
 export function Header() {
     return (
         <div className="Header">
+            <div id={"header-links"}>
+                <a href={"/privacy"}>Privacy</a>
+                <a href={"/about"}>About</a>
+            </div>
             <div className="title">
                 <h1>Poople</h1>
                 <img src={logo} alt={"💩"}/>
