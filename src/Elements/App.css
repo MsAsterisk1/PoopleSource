@@ -28,17 +28,17 @@ body:has(.publift-widget-sticky_footer-container.closed) .App {
   padding-bottom: 0 !important;
 }
 
-body:has(.ezmob-footer:has(*)) .App {
-  padding-bottom: 104px !important;
-}
+/*body:has(.ezmob-footer:has(*)) .App {*/
+/*  padding-bottom: 104px !important;*/
+/*}*/
 
-body:has(.ezmobfound[data-anchor-status="displayed"]) .App {
-  padding-bottom: 104px !important;
-}
+/*body:has(.ezmobfound[data-anchor-status="displayed"]) .App {*/
+/*  padding-bottom: 104px !important;*/
+/*}*/
 
-body:has(.ezmobfound[data-anchor-status="dismissed"]) .App {
-  padding-bottom: 30px !important;
-}
+/*body:has(.ezmobfound[data-anchor-status="dismissed"]) .App {*/
+/*  padding-bottom: 30px !important;*/
+/*}*/
 
 .App {
   text-align: center;
