@@ -1,24 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './main.css';
-import App from './Elements/App';
 import {BrowserRouter, Route, Routes} from "react-router";
 import Support from "./Support.tsx";
+import EzoicAppWrapper from "./Elements/AdTest/EzoicAppWrapper.tsx";
+import PubliftAppWrapper from "./Elements/AdTest/PubliftAppWrapper.tsx";
+import ConditionalEzoicProvider from "./Elements/AdTest/ConditionalEzoicProvider.tsx";
+import AdTestAppWrapper from "./Elements/AdTest/AdTestAppWrapper.tsx";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const adProvider = sessionStorage.getItem("adProvider") ?? "publift"
+
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<App />} />
-                <Route path="/test" element={<App test />} />
-                <Route path="/test/publift" element={<App test testCase={"publift"} />} />
-                <Route path="/test/ezoic" element={<App test testCase={"ezoic"} />} />
-                <Route path="/support" element={<Support />} />
-                {/*<Route path="/privacy" element={<Privacy />} />*/}
-            </Routes>
-        </BrowserRouter>
+        <ConditionalEzoicProvider active={adProvider === "ezoic"}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<PubliftAppWrapper />} />
+                    <Route path="/test" element={<AdTestAppWrapper test />} />
+                    <Route path="/test/publift" element={<PubliftAppWrapper test />} />
+                    <Route path="/test/ezoic" element={<EzoicAppWrapper test />} />
+                    <Route path="/support" element={<Support />} />
+                </Routes>
+            </BrowserRouter>
+        </ConditionalEzoicProvider>
     </React.StrictMode>
 );

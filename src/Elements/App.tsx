@@ -13,8 +13,9 @@ import {useNavigate, useSearchParams} from "react-router";
 import Yesterday from "./Content/Yesterday/Yesterday.tsx";
 import {daysSinceEpoch} from "../timeUtils.ts";
 import {Advertisement} from "./Content/Advertising/Advertisement.tsx";
+import {EzoicAd} from "@ezoic/react-sdk";
 
-function App(props: {test?: boolean, testCase?: string}) {
+function App(props: {test?: boolean, adProvider: "publift" | "ezoic"}) {
     const [showStats, setShowStats] = useState(false)
     const [showIntro, setShowIntro] = useState(false)
     const [showYesterday, setShowYesterday] = useState(false)
@@ -79,15 +80,27 @@ function App(props: {test?: boolean, testCase?: string}) {
             <EmojiRain active={showEmojiRain} count={100}/>
 
             <Advertisement area={"leaderboard"}>
-                <div id={"leaderboard-ad"} data-fuse="mobile_leaderboard"></div>
+                {
+                    !props.test || props.adProvider === "publift" ?
+                        <div id={"leaderboard-ad"} data-fuse="mobile_leaderboard"></div> :
+                        <EzoicAd id={101} />
+                }
             </Advertisement>
 
             <Advertisement area={"left"}>
-                <div id={"lhs-ad"} data-fuse="vrec_lhs"></div>
+                {
+                    !props.test || props.adProvider === "publift" ?
+                        <div id={"lhs-ad"} data-fuse="vrec_lhs"></div> :
+                        <EzoicAd id={105} />
+                }
             </Advertisement>
 
             <Advertisement area={"right"}>
-                <div id={"rhs-ad"} data-fuse="vrec_rhs"></div>
+                {
+                    !props.test || props.adProvider === "publift" ?
+                        <div id={"rhs-ad"} data-fuse="vrec_rhs"></div> :
+                        <EzoicAd id={104} />
+                }
             </Advertisement>
 
             <Modal hidden={!showStats} title={gameWon ? (perfect ? "Perfect!" : "Congratulations!") : ""} onClosePress={() => setShowStats(false)}>
