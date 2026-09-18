@@ -37,18 +37,20 @@ function App(props: {test?: boolean, adProvider: "publift" | "ezoic"}) {
     }
 
     useEffect(() => {
-        const fusetag = (window as unknown as Window & {
-            fusetag: {
-                que: (() => void)[]
-                registerZone: ((id: string) => void)
-            }
-        })?.fusetag
-        fusetag?.que?.push(function() {
-            fusetag?.registerZone('leaderboard-ad')
-            fusetag?.registerZone('rhs-ad')
-            fusetag?.registerZone('lhs-ad')
-        });
-    }, []);
+        if (props.adProvider === "publift") {
+            const fusetag = (window as unknown as Window & {
+                fusetag: {
+                    que: (() => void)[]
+                    registerZone: ((id: string) => void)
+                }
+            })?.fusetag
+            fusetag?.que?.push(function() {
+                fusetag?.registerZone('leaderboard-ad')
+                fusetag?.registerZone('rhs-ad')
+                fusetag?.registerZone('lhs-ad')
+            });
+        }
+    }, [props.adProvider]);
 
     useEffect(() => {
         setTestIndex(parseInt(searchParams.get("index") ?? "-1"))
