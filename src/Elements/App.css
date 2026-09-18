@@ -32,11 +32,6 @@ body:has(.ezmob-footer:has(*)) .App {
   padding-bottom: 104px !important;
 }
 
-.ezmob-footer {
-  padding-right: 24px !important;
-  box-sizing: border-box !important;
-}
-
 body:has(.ezmobfound[data-anchor-status="displayed"]) .App {
   padding-bottom: 104px !important;
 }
