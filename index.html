@@ -1,23 +1,50 @@
 <!doctype html>
 <html lang="en" style="background: #202020">
   <head>
-    <script async src="https://cdn.fuseplatform.net/publift/tags/2/4330/fuse.js"></script>
-
     <script>
-      // Get an initialisation-safe reference to the Fuse Queue
-      const fusetag = window.fusetag || (window.fusetag = { que: [] });
+      // Randomly select a branch for the split test
 
-      fusetag.que.push(function() {
-        fusetag.pageInit({
-          blockingFuseIds: [
-            'vrec_lhs',
-            'vrec_rhs',
-            'mobile_leaderboard'
-          ],
+      const adProvider = ["ezoic", "publift"][Math.trunc(Math.random() * 2)]
 
-          pageTargets: []
-        });
-      });
+      console.log("Setting adProvider in header: " + adProvider)
+      sessionStorage.setItem('adProvider', adProvider);
+
+      // Set up any header script tags required by the provider
+
+      switch (adProvider) {
+        case "ezoic":
+          // Shouldn't need anything here if the react sdk does its job
+
+          break;
+        case "publift":
+
+          const publiftScript0 = document.createElement("script");
+          publiftScript0.src = "https://cdn.fuseplatform.net/publift/tags/2/4330/fuse.js";
+          publiftScript0.async = true;
+
+          const publiftScript1 = document.createElement("script");
+          publiftScript1.innerHTML = "" +
+                  "// Get an initialisation-safe reference to the Fuse Queue\n" +
+                  "    const fusetag = window.fusetag || (window.fusetag = { que: [] });\n" +
+                  "\n" +
+                  "    fusetag.que.push(function() {\n" +
+                  "      fusetag.pageInit({\n" +
+                  "        blockingFuseIds: [\n" +
+                  "          'vrec_lhs',\n" +
+                  "          'vrec_rhs',\n" +
+                  "          'mobile_leaderboard'\n" +
+                  "        ],\n" +
+                  "\n" +
+                  "        pageTargets: []\n" +
+                  "      });\n" +
+                  "    });";
+
+          document.head.appendChild(publiftScript0);
+          document.head.appendChild(publiftScript1);
+
+          break;
+      }
+
     </script>
 
     <!-- Google tag (gtag.js) -->
@@ -28,6 +55,10 @@
       gtag('js', new Date());
 
       gtag('config', 'G-SBM3PJ5HJN');
+
+      gtag('event', 'experience_impression', {
+        exp_variant_string: "Ad-Provider-Test-" + sessionStorage.getItem('adProvider'),
+      });
     </script>
 
     <meta charset="UTF-8" />

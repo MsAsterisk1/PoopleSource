@@ -19,7 +19,7 @@ root.render(
         <ConditionalEzoicProvider active={adProvider === "ezoic"}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<PubliftAppWrapper />} />
+                    <Route path="/" element={<AdTestAppWrapper />} />
                     <Route path="/test" element={<AdTestAppWrapper test />} />
                     <Route path="/test/publift" element={<PubliftAppWrapper test />} />
                     <Route path="/test/ezoic" element={<EzoicAppWrapper test />} />

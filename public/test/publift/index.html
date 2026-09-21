@@ -32,6 +32,10 @@
     gtag('js', new Date());
 
     gtag('config', 'G-SBM3PJ5HJN');
+
+    gtag('event', 'experience_impression', {
+      exp_variant_string: "Ad-Provider-Test-" + sessionStorage.getItem('adProvider'),
+    });
   </script>
 
   <meta charset="UTF-8" />
