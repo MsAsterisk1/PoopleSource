@@ -6,8 +6,13 @@
 
     const adProvider = ["ezoic", "publift"][Math.trunc(Math.random() * 2)]
 
-    console.log("Setting adProvider in header: " + adProvider)
-    sessionStorage.setItem('adProvider', adProvider);
+    if (!sessionStorage.getItem('adProvider')) {
+      // If not set
+      console.log("Setting adProvider in header: " + adProvider)
+      sessionStorage.setItem('adProvider', adProvider);
+    } else {
+      console.log("Ad provider already set in this session: " + sessionStorage.getItem('adProvider'));
+    }
 
     // Set up any header script tags required by the provider
 
