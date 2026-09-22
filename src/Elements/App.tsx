@@ -83,7 +83,7 @@ function App(props: {test?: boolean, adProvider: "publift" | "ezoic"}) {
 
             <Advertisement area={"leaderboard"}>
                 {
-                    !props.test || props.adProvider === "publift" ?
+                    props.adProvider === "publift" ?
                         <div id={"leaderboard-ad"} data-fuse="mobile_leaderboard"></div> :
                         <EzoicAd id={101} />
                 }
@@ -91,7 +91,7 @@ function App(props: {test?: boolean, adProvider: "publift" | "ezoic"}) {
 
             <Advertisement area={"left"}>
                 {
-                    !props.test || props.adProvider === "publift" ?
+                    props.adProvider === "publift" ?
                         <div id={"lhs-ad"} data-fuse="vrec_lhs"></div> :
                         <EzoicAd id={105} />
                 }
@@ -99,7 +99,7 @@ function App(props: {test?: boolean, adProvider: "publift" | "ezoic"}) {
 
             <Advertisement area={"right"}>
                 {
-                    !props.test || props.adProvider === "publift" ?
+                    props.adProvider === "publift" ?
                         <div id={"rhs-ad"} data-fuse="vrec_rhs"></div> :
                         <EzoicAd id={104} />
                 }
